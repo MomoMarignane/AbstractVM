@@ -7,6 +7,8 @@
 
 #pragma once
     #include <iostream>
+    #include <cmath>
+    #include "../Error/Error.hpp"
 
 namespace Operands {
     enum class eOperandType {

@@ -11,12 +11,10 @@ Operands::FLOAT::FLOAT(const std::string& value)
 {
     valueInt_ = std::stof(value);
     if (valueInt_ < (-32768)) {
-        std::cout << "to small FLOAT" << std::endl;
-        exit(-1);
+        throw ERROR::MyException("to small float: Ints/Float/FLOAT.cpp: line 13");
     }
     if (valueInt_ > 32767) {
-        std::cout << "to long FLOAT" << std::endl;
-        exit(-1);
+        throw ERROR::MyException("to big float: Ints/Float/FLOAT.cpp: line 15");
     }
     value_ = std::stof(value);
     // value_ = static_cast<float>(std::stoi(value));
@@ -77,8 +75,7 @@ Operands::IOperand* Operands::FLOAT::operator/(const IOperand& rhs) const
     float rhsValue = std::stof(rhs.toString());
 
     if (rhsValue == 0) {
-        std::cout << "Division by zero" << std::endl;
-        exit(-1);
+        throw ERROR::MyException("division by 0: Ints/Float/FLOAT.cpp: line 77");
     }
 
     float result = value_ / rhsValue;
@@ -89,7 +86,6 @@ Operands::IOperand* Operands::FLOAT::operator/(const IOperand& rhs) const
 
 Operands::IOperand* Operands::FLOAT::operator%(const IOperand& rhs) const
 {
-    std::cout << "Modulo operation not supported for FLOAT" << std::endl;
-    exit(-1);
+    throw ERROR::MyException("modulo with float value: Ints/Float/FLOAT.cpp: line 13");
     return nullptr;
 }

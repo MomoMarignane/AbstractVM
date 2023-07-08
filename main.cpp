@@ -13,14 +13,19 @@
 #include "IOperand/Factory/Factory.hpp"
 #include "Stack/Stack.hpp"
 
-void VMfunc()
+int VMfunc()
 {
-    std::string input;
-    VM::Stack s;
-    while (std::getline(std::cin, input)) {
-        VM::Parser p(input);
-        s.run(&p);
+    try {
+        std::string input;
+        VM::Stack s;
+        while (std::getline(std::cin, input)) {
+            VM::Parser p(input);
+            s.run(&p);
+        }
+    } catch (const ERROR::MyException& e) {
+        throw ERROR::MyException("main.cpp: line 21");
     }
+    return 0;
 }
 
 int main(void)

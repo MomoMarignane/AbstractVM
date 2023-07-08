@@ -18,19 +18,19 @@ namespace VM {
             void Push();
             void Pop();
             void Clear();
-            void Dup() {};
-            void Swap() {};
+            void Dup();
+            void Swap();
             void Dump();
             void Assert();
             void Add() {};
             void Sub() {};
             void Mul() {};
-            void Load() {};
-            void Store() {};
+            void Load();
+            void Store();
             void Print();
-            void Exit() {};
         private:
             std::vector<Operands::IOperand*> stack_;
+            std::vector<Operands::IOperand*> newStack_;
             VM::Parser* parser_;
             Operands::IOperand* factory_;
     };

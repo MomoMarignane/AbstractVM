@@ -10,14 +10,10 @@
 Operands::Int16::Int16(const std::string& value)
 {
     valueInt_ = std::stoi(value);
-    if (valueInt_ < (-32768)) {
-        std::cout << "to small int16" << std::endl;
-        exit(-1);
-    }
-    if (valueInt_ > 32767) {
-        std::cout << "to long int16" << std::endl;
-        exit(-1);
-    }
+    if (valueInt_ < (-32768))
+        throw ERROR::MyException("to small int16: Ints/int16/int16.cpp: line 13");
+    if (valueInt_ > 32767)
+        throw ERROR::MyException("to long int16: Ints/int16/int16.cpp: line 15");
     value_ = static_cast<int16_t>(valueInt_);
 }
 
@@ -73,8 +69,7 @@ Operands::IOperand* Operands::Int16::operator/(const IOperand& rhs) const
     int16_t rhsValue = static_cast<int16_t>(std::stoi(rhs.toString()));
 
     if (rhsValue == 0) {
-        std::cout << "Division by zero" << std::endl;
-        exit(-1);
+        throw ERROR::MyException("division by 0: Ints/int16/int16.cpp: line 71");
     }
 
     int16_t result = value_ / rhsValue;
@@ -89,8 +84,7 @@ Operands::IOperand* Operands::Int16::operator%(const IOperand& rhs) const
     int16_t rhsValue = static_cast<int16_t>(std::stoi(rhs.toString()));
 
     if (rhsValue == 0) {
-        std::cout << "Modulo by zero" << std::endl;
-        exit(-1);
+        throw ERROR::MyException("modulo by 0: Ints/int16/int16.cpp: line 86");
     }
 
     int16_t result = value_ % rhsValue;

@@ -13,7 +13,7 @@ namespace ERROR {
     class MyException : public std::exception {
         public:
             MyException(const std::string& message) : message_(message) {
-                std::cout << message_ << std::endl;
+                std::cout << "Error: " << message_ << std::endl;
             }
 
             // Override the what() function to provide a custom error message

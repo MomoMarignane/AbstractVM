@@ -108,7 +108,7 @@ void VM::Parser::setTypeData()
         result += 1;
     }
     if (result > 2)
-        exit(-1);
+        throw ERROR::MyException("grammatical: Parser/Parser.cpp: line 82");
 }
 
 void VM::Parser::setCmd()
@@ -156,7 +156,7 @@ void VM::Parser::setCmd()
         case VM::UserCmd::EXIT :
             break;
         default:
-            exit(-1);
+            throw ERROR::MyException("grammatical: Parser/Parser.cpp: line 158");
     }
     return;
 }
@@ -178,7 +178,7 @@ void VM::Parser::setValue()
         if (fullLineCmd_[i] == '(')
             catch_ = true;
     }
-    std::cout << "enregistrer en tent que [" << value_ << "]" << std::endl;
+    // std::cout << "enregistrer en tent que [" << value_ << "]" << std::endl;
 }
 
 std::string VM::Parser::getValue() const

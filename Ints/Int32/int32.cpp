@@ -10,14 +10,10 @@
 Operands::Int32::Int32(const std::string& value)
 {
     valueInt_ = std::stoi(value);
-    if (valueInt_ < (-2147483648)) {
-        std::cout << "to small int32" << std::endl;
-        exit(-1);
-    }
-    if (valueInt_ > 2147483647) {
-        std::cout << "to long int32" << std::endl;
-        exit(-1);
-    }
+    if (valueInt_ < (-2147483648))
+        throw ERROR::MyException("to small int32: Ints/int32/int32.cpp: line 13");
+    if (valueInt_ > 2147483647)
+        throw ERROR::MyException("to small int32: Ints/int32/int32.cpp: line 15");
     value_ = static_cast<int32_t>(valueInt_);
 }
 
@@ -72,10 +68,8 @@ Operands::IOperand* Operands::Int32::operator/(const IOperand& rhs) const
     eOperandType tmpType = std::max(getType(), rhs.getType());
     int32_t rhsValue = static_cast<int32_t>(std::stoi(rhs.toString()));
 
-    if (rhsValue == 0) {
-        std::cout << "Division by zero" << std::endl;
-        exit(-1);
-    }
+    if (rhsValue == 0)
+    throw ERROR::MyException("to small int32: Ints/int32/int32.cpp: line 71");
 
     int32_t result = value_ / rhsValue;
     std::string resultString = std::to_string(result);
@@ -88,10 +82,8 @@ Operands::IOperand* Operands::Int32::operator%(const IOperand& rhs) const
     eOperandType tmpType = std::max(getType(), rhs.getType());
     int32_t rhsValue = static_cast<int32_t>(std::stoi(rhs.toString()));
 
-    if (rhsValue == 0) {
-        std::cout << "Modulo by zero" << std::endl;
-        exit(-1);
-    }
+    if (rhsValue == 0)
+        throw ERROR::MyException("to small int32: Ints/int32/int32.cpp: line 85");
 
     int32_t result = value_ % rhsValue;
     std::string resultString = std::to_string(result);
