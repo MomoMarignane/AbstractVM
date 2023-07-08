@@ -7,6 +7,7 @@
 
 #pragma once
     #include "../Utils/Utils.hpp"
+    #include "../Error/Error.hpp"
 
 namespace Operands {
     class IOperand

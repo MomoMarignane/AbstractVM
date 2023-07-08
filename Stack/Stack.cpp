@@ -38,7 +38,7 @@ void VM::Stack::Push()
 {
     parser_->setTypeData();
     if (parser_->getTypeData() == Operands::eOperandType::NO_VALUE)
-        exit(84);
+        throw ERROR::MyException("Error line 40: no type detected");
     Operands::IOperand* o = Operands::Factory::createOperand(parser_->getTypeData(), parser_->getValue());
     stack_.insert(stack_.begin(), o)
 ;    // stack_.push_back(std::make_pair(value, type));

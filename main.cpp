@@ -17,8 +17,7 @@ void VMfunc()
 {
     std::string input;
     VM::Stack s;
-    while (1) {
-        std::getline(std::cin, input);
+    while (std::getline(std::cin, input)) {
         VM::Parser p(input);
         s.run(&p);
     }
@@ -31,6 +30,10 @@ int main(void)
     // Operands::IOperand* result = *op1 + *op2;
     // std::cout << "Addition result: " << result->toString() << std::endl;
     // delete result;
-    VMfunc();
+    try {
+        VMfunc();
+    } catch (const ERROR::MyException& e) {
+        return 84;
+    }
     return 0;
 }
