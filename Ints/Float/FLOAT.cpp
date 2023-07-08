@@ -34,7 +34,7 @@ Operands::eOperandType Operands::FLOAT::getType() const
 std::string Operands::FLOAT::toString() const
 {
     std::stringstream ss;
-    ss << std::fixed << std::setprecision(2) << value_;
+    ss << std::fixed << std::setprecision(7) << value_;
     return ss.str();
 }
 
@@ -45,7 +45,6 @@ Operands::IOperand* Operands::FLOAT::operator+(const IOperand& rhs) const
     float result = value_ + rhsValue;
     // Convertir le résultat en chaîne de caractères avec la précision souhaitée
     std::stringstream ss;
-    ss << std::fixed << std::setprecision(2) << result;
     std::string resultString = ss.str();
     return Operands::Factory::createOperand(tmpType, resultString);
 }

@@ -22,8 +22,14 @@ void VM::Stack::run(VM::Parser* p)
         exit(0);
     if (parser_->getCmd() == VM::UserCmd::PUSH)
         Push();
+    if (parser_->getCmd() == VM::UserCmd::DUMP)
+        Dump();
     if (parser_->getCmd() == VM::UserCmd::ASSERT)
         Assert();
+    if (parser_->getCmd() == VM::UserCmd::POP)
+        Pop();
+    if (parser_->getCmd() == VM::UserCmd::CLEAR)
+        Clear();
     if (parser_->getCmd() == VM::UserCmd::PRINT)
         this->Print();
 }
@@ -54,13 +60,23 @@ void VM::Stack::Assert()
     // }
 }
 
+void VM::Stack::Dump()
+{
+    std::cout << "in dump" << std::endl;
+    if (stack_.empty())
+        exit(42);
+    for (const auto& elem : stack_) {
+        std::cout << elem->toString() << std::endl;
+    }
+}
+
 void VM::Stack::Print()
 {
     if (stack_.empty()) {
         std::cout << "Error: Stack is empty." << std::endl;
         exit(1);
     }
-    if (stack_[0]->getType() == Operands::eOperandType::INT8) {
+    if (std::stoi(stack_[0]->toString())) {
         std::cout << "int8 detected dans print" << std::endl;
         int asciiValue = std::stoi(stack_[0]->toString());
         char character = static_cast<char>(asciiValue);
@@ -69,4 +85,19 @@ void VM::Stack::Print()
         std::cout << "value begin stack -> " << stack_[0]->toString() << std::endl;
     }
     // std::cout << "Output: " << character << std::endl;
+}
+
+void VM::Stack::Clear()
+{
+    while (!stack_.empty())
+        stack_.erase(stack_.begin());
+}
+
+void VM::Stack::Pop()
+{
+    if (stack_.empty()) {
+        std::cout << "Error: Stack is empty." << std::endl;
+        exit(1);
+    }
+    stack_.erase(stack_.begin());
 }

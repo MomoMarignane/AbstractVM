@@ -16,11 +16,11 @@ namespace VM {
             ~Stack();
             void run(VM::Parser*);
             void Push();
-            void Pop() {};
-            void Clear() {};
+            void Pop();
+            void Clear();
             void Dup() {};
             void Swap() {};
-            void Dump() {};
+            void Dump();
             void Assert();
             void Add() {};
             void Sub() {};
