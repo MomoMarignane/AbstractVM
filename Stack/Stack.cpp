@@ -49,9 +49,6 @@ void VM::Stack::Push()
         throw ERROR::MyException("no type detected: Stack/Stack.cpp: line 40");
     Operands::IOperand* o = Operands::Factory::createOperand(parser_->getTypeData(), parser_->getValue());
     stack_.insert(stack_.begin(), o);
-    // stack_.push_back(std::make_pair(value, type));
-    // if (stack_.empty())
-    //     std::cout << "erreur lors du push" << std::endl;
 }
 
 void VM::Stack::Assert()

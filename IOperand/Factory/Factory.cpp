@@ -8,9 +8,7 @@
 #include "Factory.hpp"
 
 Operands::Factory::Factory()
-{
-    std::cout << "Factory ok !" << std::endl;
-}
+{}
 
 Operands::IOperand* Operands::Factory::createOperand(eOperandType type, const std::string &value)
 {

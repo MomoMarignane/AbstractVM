@@ -25,10 +25,9 @@ VM::Parser::~Parser()
 VM::UserCmd VM::Parser::searchInString()
 {
     if (fullLineCmd_.size() == 0)
-        currentCmd_ = VM::UserCmd::NO_FOUND;
+        return VM::UserCmd::NO_FOUND;
     size_t pos = fullLineCmd_.find("push");
     if (check_founded(pos) == true && pos == 0) {
-        std::cout << "push ok." << std::endl;
         return VM::UserCmd::PUSH;
     }
     pos = fullLineCmd_.find("pop");
@@ -156,7 +155,8 @@ void VM::Parser::setCmd()
         case VM::UserCmd::EXIT :
             break;
         default:
-            throw ERROR::MyException("grammatical: Parser/Parser.cpp: line 158");
+            if (fullLineCmd_.find(";") == 0)
+                throw ERROR::MyException("grammatical: Parser/Parser.cpp: line 158");
     }
     return;
 }
