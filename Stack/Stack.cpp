@@ -91,7 +91,7 @@ void VM::Stack::Dump()
 {
     // std::cout << "in dump" << std::endl;
     if (stack_.empty())
-        throw ERROR::MyException("stack is empty: Stack/Stack.cpp: line 83");
+        return;
     for (const auto& elem : stack_) {
         std::cout << elem->toString() << std::endl;
     }
@@ -107,7 +107,7 @@ void VM::Stack::Print()
         int asciiValue = std::stoi(stack_.front()->toString());
         char character = static_cast<char>(asciiValue);
         // std::cout << "caracrete ascii -> " << static_cast<char>(asciiValue) << std::endl;
-    } 
+    }
     // std::cout << "Output: " << character << std::endl;
 }
 
