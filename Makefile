@@ -7,9 +7,9 @@
 
 SRC	=	main.cpp	\
 		Utils/Utils.cpp	\
-		Ints/Int8/Int8.cpp	\
-		Ints/Int16/Int16.cpp	\
-		Ints/Int32/Int32.cpp	\
+		Ints/Int8/int8.cpp	\
+		Ints/Int16/int16.cpp	\
+		Ints/Int32/int32.cpp	\
 		Ints/Float/FLOAT.cpp	\
 		Ints/Double/DOUBLE.cpp	\
 		IOperand/Factory/Factory.cpp	\
