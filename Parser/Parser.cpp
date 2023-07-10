@@ -173,7 +173,7 @@ void VM::Parser::setValue()
     for (int i = 0, j = 0; fullLineCmd_[i]; i += 1) {
         if (fullLineCmd_[i] == ')')
             break;
-        if (catch_ == true && fullLineCmd_[i] >= '0' && fullLineCmd_[i] <= '9')
+        if (catch_ == true && (fullLineCmd_[i] >= '0' && fullLineCmd_[i] <= '9') || fullLineCmd_[i] == '.')
             value_ += fullLineCmd_[i];
         if (fullLineCmd_[i] == '(')
             catch_ = true;

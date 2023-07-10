@@ -30,7 +30,7 @@ namespace Operands {
             IOperand* operator%(const IOperand& rhs) const override;
 
             std::string toString() const override;
-
+            std::string valueStr_;
         private:
             float value_;
             float valueInt_;

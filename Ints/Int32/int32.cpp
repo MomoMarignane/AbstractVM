@@ -13,7 +13,7 @@ Operands::Int32::Int32(const std::string& value)
     if (valueInt_ < (-2147483648))
         throw ERROR::MyException("to small int32: Ints/int32/int32.cpp: line 13");
     if (valueInt_ > 2147483647)
-        throw ERROR::MyException("to small int32: Ints/int32/int32.cpp: line 15");
+        throw ERROR::MyException("to long int32: Ints/int32/int32.cpp: line 15");
     value_ = static_cast<int32_t>(valueInt_);
 }
 

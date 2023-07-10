@@ -17,12 +17,13 @@
 int VMfunc(char *src)
 {
     try {
-        std::ifstream file(src);
-        if (!file.is_open())
-            throw ERROR::MyException("open file: main.cpp: line 21");
+        // std::ifstream file(src);
+        // if (!file.is_open())
+        //     throw ERROR::MyException("open file: main.cpp: line 21");
         std::string input;
         VM::Stack s;
-        while (std::getline(file, input)) {
+        while (std::getline(std::cin, input)) {
+            // std::cout << "input sending --> " << input << std::endl;
             VM::Parser p(input + '\n');
             s.run(&p);
         }

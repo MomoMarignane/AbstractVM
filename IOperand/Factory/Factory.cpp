@@ -45,7 +45,11 @@ Operands::IOperand* Operands::Factory::createInt32(const std::string& value)
 
 Operands::IOperand* Operands::Factory::createFloat(const std::string& value)
 {
-    Operands::IOperand *newOperand = new Operands::FLOAT(value);
+    // std::cout << "value sended into float class --> " << value << std::endl;
+    std::stringstream ss;
+    ss << std::fixed << std::setprecision(7) << value;
+    // std::cout << "ss = " << ss.str() << std::endl;
+    Operands::IOperand *newOperand = new Operands::FLOAT(ss.str());
     return newOperand;
 }
 

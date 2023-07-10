@@ -14,6 +14,7 @@ namespace VM {
         public:
             Stack();
             ~Stack();
+            std::string getFullLine() const;
             void run(VM::Parser*);
             void Push();
             void Pop();
@@ -22,16 +23,19 @@ namespace VM {
             void Swap();
             void Dump();
             void Assert();
-            void Add() {};
-            void Sub() {};
-            void Mul() {};
+            void Add();
+            void Sub();
+            void Mul();
             void Load();
             void Store();
             void Print();
+            void Div();
+            void Mod();
         private:
             std::vector<Operands::IOperand*> stack_;
             std::vector<Operands::IOperand*> newStack_;
             VM::Parser* parser_;
             Operands::IOperand* factory_;
+            std::string fullLine_;
     };
 }

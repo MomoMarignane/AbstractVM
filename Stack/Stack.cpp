@@ -17,6 +17,7 @@ VM::Stack::~Stack()
 void VM::Stack::run(VM::Parser* p)
 {
     parser_ = p;
+    fullLine_ = parser_->getFullLine();
     p->setCmd();
     if (parser_->getCmd() == VM::UserCmd::EXIT)
         exit(0);
@@ -40,6 +41,16 @@ void VM::Stack::run(VM::Parser* p)
         Store();
     if (parser_->getCmd() == VM::UserCmd::LOAD)
         Load();
+    if (parser_->getCmd() == VM::UserCmd::ADD)
+        Add();
+    if (parser_->getCmd() == VM::UserCmd::SUB)
+        Sub();
+    if (parser_->getCmd() == VM::UserCmd::MUL)
+        Mul();
+    if (parser_->getCmd() == VM::UserCmd::DIV)
+        Div();
+    if (parser_->getCmd() == VM::UserCmd::MOD)
+        Mod();
 }
 
 void VM::Stack::Push()
@@ -55,6 +66,9 @@ void VM::Stack::Assert()
 {
     if (stack_.empty())
         throw ERROR::MyException("stack is empty: Stack/Stack.cpp: line 59");
+    // std::cout << "Stack val 1: " << stack_.front()->toString() << std::endl;
+    // std::cout << "Stack val 2: " <<parser_->getValue() << std::endl;
+
     if (parser_->getValue() != stack_.front()->toString())
         throw ERROR::MyException("stack and value are not twin's: Stack/Stack.cpp: line 61");
     // const std::string& topValue = stack_.back().first;
@@ -75,13 +89,15 @@ void VM::Stack::Dup()
 
 void VM::Stack::Dump()
 {
-    std::cout << "in dump" << std::endl;
+    // std::cout << "in dump" << std::endl;
     if (stack_.empty())
         throw ERROR::MyException("stack is empty: Stack/Stack.cpp: line 83");
     for (const auto& elem : stack_) {
         std::cout << elem->toString() << std::endl;
     }
 }
+
+
 
 void VM::Stack::Print()
 {
@@ -90,10 +106,8 @@ void VM::Stack::Print()
     if (std::stoi(stack_.front()->toString())) {
         int asciiValue = std::stoi(stack_.front()->toString());
         char character = static_cast<char>(asciiValue);
-        std::cout << "caracrete ascii -> " << static_cast<char>(asciiValue) << std::endl;
-    } else {
-        std::cout << "value begin stack -> " << stack_.front()->toString() << std::endl;
-    }
+        // std::cout << "caracrete ascii -> " << static_cast<char>(asciiValue) << std::endl;
+    } 
     // std::cout << "Output: " << character << std::endl;
 }
 
@@ -124,7 +138,7 @@ void VM::Stack::Swap()
 void VM::Stack::Store()
 {
     if (stack_.empty())
-        throw ERROR::MyException("Stack is empty");
+        throw ERROR::MyException("Stack is empty: Stack/Stack.cpp: line 134");
     if (std::stoi(parser_->getValue()) >= newStack_.size())
         newStack_.resize(std::stoi(parser_->getValue()) + 1, nullptr);
     newStack_[std::stoi(parser_->getValue())] = stack_.front();
@@ -135,8 +149,58 @@ void VM::Stack::Store()
 void VM::Stack::Load()
 {
     if (newStack_.size() < std::stoi(parser_->getValue()) || newStack_[std::stoi(parser_->getValue())] == nullptr)
-        throw ERROR::MyException("newStack v is empty");
+        throw ERROR::MyException("newStack v is empty: Stack/Stack.cpp: line 145");
     Operands::IOperand* o = newStack_[std::stoi(parser_->getValue())];
     stack_.insert(stack_.begin(), newStack_[std::stoi(parser_->getValue())]);
     newStack_[std::stoi(parser_->getValue())] = nullptr;
+}
+
+void VM::Stack::Add()
+{
+    if (stack_.size() < 2)
+        throw ERROR::MyException("Add: stack size < 2: Stack/Stack.cpp: line 154");
+    Operands::IOperand* result = *stack_[1] + *stack_[0];
+    for (int i = 0; i < 2; i += 1)
+        stack_.erase(stack_.begin());
+    stack_.insert(stack_.begin(), result);
+}
+
+void VM::Stack::Sub()
+{
+    if (stack_.size() < 2)
+        throw ERROR::MyException("Sub: stack size < 2: Stack/Stack.cpp: line 165");
+    Operands::IOperand* result = *stack_[1] - *stack_[0];
+    for (int i = 0; i < 2; i += 1)
+        stack_.erase(stack_.begin());
+    stack_.insert(stack_.begin(), result);
+}
+
+void VM::Stack::Mul()
+{
+    if (stack_.size() < 2)
+        throw ERROR::MyException("Sub: stack size < 2: Stack/Stack.cpp: line 165");
+    Operands::IOperand* result = *stack_[1] * *stack_[0];
+    for (int i = 0; i < 2; i += 1)
+        stack_.erase(stack_.begin());
+    stack_.insert(stack_.begin(), result);
+}
+
+void VM::Stack::Div()
+{
+    if (stack_.size() < 2)
+        throw ERROR::MyException("Sub: stack size < 2: Stack/Stack.cpp: line 165");
+    Operands::IOperand* result = *stack_[1] / *stack_[0];
+    for (int i = 0; i < 2; i += 1)
+        stack_.erase(stack_.begin());
+    stack_.insert(stack_.begin(), result);
+}
+
+void VM::Stack::Mod()
+{
+    if (stack_.size() < 2)
+        throw ERROR::MyException("Sub: stack size < 2: Stack/Stack.cpp: line 165");
+    Operands::IOperand* result = *stack_[1] % *stack_[0];
+    for (int i = 0; i < 2; i += 1)
+        stack_.erase(stack_.begin());
+    stack_.insert(stack_.begin(), result);
 }
