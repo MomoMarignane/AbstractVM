@@ -1,7 +1,0 @@
-dump
-push int8(10) ;sfasdf
-push int32(126000000)
-add
-dump
-dump
-exit
