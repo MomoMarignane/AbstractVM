@@ -9,7 +9,7 @@
 
 Operands::FLOAT::FLOAT(const std::string& value)
 {
-    double tmp = std::stod(value);
+    int64_t tmp = std::stol(value);
     if (tmp < (-3.4e38f)) {
         throw ERROR::MyException("to small float: Ints/Float/FLOAT.cpp: line 13");
     }
