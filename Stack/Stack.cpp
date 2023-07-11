@@ -88,14 +88,12 @@ void VM::Stack::Dump()
     }
 }
 
-
-
 void VM::Stack::Print()
 {
     if (stack_.empty())
-        throw ERROR::MyException("stack is empty: Stack/Stack.cpp: line 91");
+        throw ERROR::MyException("stack is empty: Stack/Stack.cpp: line 93");
     if (stack_.front()->getType() != Operands::eOperandType::INT8) {
-        throw ERROR::MyException("value is not int8_t type: Stack/Stack.cpp: line 92");
+        throw ERROR::MyException("value is not int8_t type: Stack/Stack.cpp: line 95");
     }
     int asciiValue = std::stoi(stack_.front()->toString());
     std::cout << static_cast<char>(asciiValue) << std::endl;
@@ -104,8 +102,16 @@ void VM::Stack::Print()
 
 void VM::Stack::Clear()
 {
-    while (!stack_.empty())
+    while (!stack_.empty()) {
+        delete stack_[0];
         stack_.erase(stack_.begin());
+    }
+    stack_.clear();
+    while (!newStack_.empty()) {
+        delete newStack_[0];
+        newStack_.erase(newStack_.begin());
+    }
+    newStack_.clear();
 }
 
 void VM::Stack::Pop()
