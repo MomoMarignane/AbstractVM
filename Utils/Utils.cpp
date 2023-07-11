@@ -35,9 +35,11 @@ std::string myDeletUnlessZero(std::string value)
     std::string valueStr_ = value;
     bool switch_ = false;
     int deleteZero = valueStr_.size() - 1;
+    size_t pointPos;
     for (int i = 0; valueStr_[i]; i += 1) {
         if (valueStr_[i] == '.')
             switch_ = true;
+            pointPos = i;
     }
     if (switch_ == true) {
         for (; deleteZero >= 0 && (valueStr_[deleteZero] == '0' || valueStr_[deleteZero] == '.'); deleteZero -= 1)
@@ -50,5 +52,7 @@ std::string myDeletUnlessZero(std::string value)
             tmp += valueStr_[c];
         valueStr_ = tmp;
     }
+    // for (int i = valueStr_.size() - 1; i < pointPos; i -= 1)
+
     return valueStr_;
 }

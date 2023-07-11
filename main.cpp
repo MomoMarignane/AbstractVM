@@ -23,7 +23,6 @@ int VMfunc(char *src)
             throw ERROR::MyException("open file: main.cpp: line 21");
         std::string input;
         while (std::getline(file, input)) {
-            // std::cout << "input sending --> " << input << std::endl;
             VM::Parser p(input + '\n');
             s.run(&p);
         }
@@ -36,11 +35,6 @@ int VMfunc(char *src)
 
 int main(int ac, char **av)
 {
-    // Operands::IOperand* op1 = Operands::Factory::createOperand(Operands::eOperandType::INT8, "5");
-    // Operands::IOperand* op2 = Operands::Factory::createOperand(Operands::eOperandType::FLOAT, "6.5");
-    // Operands::IOperand* result = *op1 + *op2;
-    // std::cout << "Addition result: " << result->toString() << std::endl;
-    // delete result;
     if (ac > 2) {
         std::cout << "Error: nb args not valid: main.cpp: line 40" << std::endl;
         return 84;
