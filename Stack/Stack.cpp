@@ -94,12 +94,11 @@ void VM::Stack::Print()
 {
     if (stack_.empty())
         throw ERROR::MyException("stack is empty: Stack/Stack.cpp: line 91");
-    if (std::stoi(stack_.front()->toString()) >= 0 && std::stoi(stack_.front()->toString()) < 128) {
-        int asciiValue = std::stoi(stack_.front()->toString());
-        std::cout << static_cast<char>(asciiValue) << std::endl;
-    } else {
-        std::cout << stack_.front()->toString() << std::endl;
+    if (stack_.front()->getType() != Operands::eOperandType::INT8) {
+        throw ERROR::MyException("value is not int8_t type: Stack/Stack.cpp: line 92");
     }
+    int asciiValue = std::stoi(stack_.front()->toString());
+    std::cout << static_cast<char>(asciiValue) << std::endl;
     // std::cout << "Output: " << character << std::endl;
 }
 
