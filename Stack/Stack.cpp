@@ -101,16 +101,10 @@ void VM::Stack::Print()
 
 void VM::Stack::Clear()
 {
-    while (!stack_.empty()) {
-        delete stack_[0];
-        stack_.erase(stack_.begin());
-    }
-    stack_.clear();
-    while (!newStack_.empty()) {
-        delete newStack_[0];
-        newStack_.erase(newStack_.begin());
-    }
-    newStack_.clear();
+    if (!stack_.empty())
+        stack_.clear();
+    if (!newStack.empty())
+        newStack_.clear();
 }
 
 void VM::Stack::Pop()
