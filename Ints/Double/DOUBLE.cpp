@@ -9,11 +9,17 @@
 
 Operands::DOUBLE::DOUBLE(const std::string& value)
 {
+    int i = 0;
+    for (;value[i]; i += 1)
+        if (value[i] == '.')
+            break;
+    if (i >= 9)
+        throw ERROR::MyException("to long float: Ints/Double/DOUBLE.cpp: line 15");
     int64_t tmp = std::stol(value);
     if (tmp < (-1.7e308))
-        throw ERROR::MyException("to small DOUBLE: line 13: Ints/Double/DOUBLE.cpp");
+        throw ERROR::MyException("to small DOUBLE: Ints/Double/DOUBLE.cpp: line 18");
     if (tmp > 1.7e308)
-        throw ERROR::MyException("to long DOUBLE: line 15: Ints/Double/DOUBLE.cpp");
+        throw ERROR::MyException("to long DOUBLE: line 15: Ints/Double/DOUBLE.cpp: line 20");
     value_ = std::stod(value);
     valueInt_ = std::stoi(value);
     valueStr_ = myDeletUnlessZero(value);

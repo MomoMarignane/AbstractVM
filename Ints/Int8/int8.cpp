@@ -9,6 +9,9 @@
 
 Operands::Int8::Int8(const std::string& value)
 {
+    if (value.size() >= 19) {
+        throw ERROR::MyException("to long int8: Ints/int8/int8.cpp: line 12");
+    }
     int64_t tmp = std::stol(value);
     if (tmp < (-128))
         throw ERROR::MyException("to small int8: Ints/int8/int8.cpp: line 13");

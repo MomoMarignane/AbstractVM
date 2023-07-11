@@ -9,21 +9,22 @@
 
 Operands::FLOAT::FLOAT(const std::string& value)
 {
+    int i = 0;
+    for (;value[i]; i += 1)
+        if (value[i] == '.')
+            break;
+    if (i >= 9)
+        throw ERROR::MyException("to long float: Ints/Float/FLOAT.cpp: line 15");
     int64_t tmp = std::stol(value);
     if (tmp < (-3.4e38f)) {
-        throw ERROR::MyException("to small float: Ints/Float/FLOAT.cpp: line 13");
+        throw ERROR::MyException("to small float: Ints/Float/FLOAT.cpp: line 18");
     }
     if (tmp > 3.4e38f) {
-        throw ERROR::MyException("to long float: Ints/Float/FLOAT.cpp: line 15");
+        throw ERROR::MyException("to long float: Ints/Float/FLOAT.cpp: line 21");
     }
     value_ = std::stof(value);
     valueInt_ = std::stof(value);
     valueStr_ = myDeletUnlessZero(value);
-    // std::cout << "valueStr in constructeur -> " << valueStr_ << std::endl;
-    // std::cout << "value_ sended --> " << value << std::endl;
-    // std::cout << "value_ stocked --> " << value_ << std::endl;
-
-    // value_ = static_cast<float>(std::stoi(value));
 }
 
 Operands::FLOAT::~FLOAT()

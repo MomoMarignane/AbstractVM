@@ -9,11 +9,14 @@
 
 Operands::Int16::Int16(const std::string& value)
 {
+    if (value.size() >= 19) {
+        throw ERROR::MyException("to long int16: Ints/int16/int16.cpp: line 12");
+    }
     int64_t tmp = std::stol(value);
     if (tmp < (-32768))
-        throw ERROR::MyException("to small int16: Ints/int16/int16.cpp: line 13");
+        throw ERROR::MyException("to small int16: Ints/int16/int16.cpp: line 16");
     if (tmp > 32767)
-        throw ERROR::MyException("to long int16: Ints/int16/int16.cpp: line 15");
+        throw ERROR::MyException("to long int16: Ints/int16/int16.cpp: line 18");
     valueInt_ = std::stoi(value);
     value_ = static_cast<double>(valueInt_);
 }

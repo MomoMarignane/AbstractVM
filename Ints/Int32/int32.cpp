@@ -9,6 +9,9 @@
 
 Operands::Int32::Int32(const std::string& value)
 {
+    if (value.size() >= 19) {
+        throw ERROR::MyException("to long int32: Ints/int32/int32.cpp: line 12");
+    }
     int64_t tmp = std::stol(value);
     if (tmp < (-2147483648))
         throw ERROR::MyException("to small int32: Ints/int32/int32.cpp: line 13");
