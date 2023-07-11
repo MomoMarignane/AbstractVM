@@ -19,25 +19,22 @@ int VMfunc(char *src)
     VM::Stack s;
     int occurExit = 0;
     size_t pos;
-    try {
-        std::ifstream file(src);
-        if (!file.is_open())
-            throw ERROR::MyException("open file: main.cpp: line 21");
-        std::string input;
-        while (std::getline(file, input)) {
-            input.find("exit");
-            if (pos != std::string::npos)
-                occurExit += 1;
-            if (occurExit != 1) {
-                std::cout << "check the exit's commands: main.cpp: line 32" << std::endl;
-                return 84;
-            }
+    std::ifstream file(src);
+    if (!file.is_open())
+        throw ERROR::MyException("open file: main.cpp: line 21");
+    std::string input;
+    while (std::getline(file, input)) {
+        pos = input.find("exit");
+        if (pos != std::string::npos)
+            occurExit += 1;
+        if (occurExit == 0) {
             VM::Parser p(input + '\n');
             s.run(&p);
         }
-    } catch (const ERROR::MyException& e) {
-        throw ERROR::MyException("main.cpp: line 29");
-        s.Clear();
+    }
+    if (occurExit != 1) {
+        std::cout << "check the exit's commands: main.cpp: line 32" << std::endl;
+        return 84;
     }
     return 0;
 }

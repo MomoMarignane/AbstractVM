@@ -19,8 +19,8 @@ void VM::Stack::run(VM::Parser* p)
     parser_ = p;
     fullLine_ = parser_->getFullLine();
     p->setCmd();
-    if (parser_->getCmd() == VM::UserCmd::EXIT)
-        exit(0);
+    // if (parser_->getCmd() == VM::UserCmd::EXIT)
+    //     exit(0);
     if (parser_->getCmd() == VM::UserCmd::PUSH)
         Push();
     if (parser_->getCmd() == VM::UserCmd::DUMP)
