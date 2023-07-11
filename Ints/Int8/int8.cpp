@@ -9,11 +9,12 @@
 
 Operands::Int8::Int8(const std::string& value)
 {
-    valueInt_ = std::stoi(value);
-    if (valueInt_ < (-128))
-    throw ERROR::MyException("to small int8: Ints/int8/int8.cpp: line 13");
-    if (valueInt_ > 127)
+    int64_t tmp = std::stol(value);
+    if (tmp < (-128))
+        throw ERROR::MyException("to small int8: Ints/int8/int8.cpp: line 13");
+    if (tmp > 127)
         throw ERROR::MyException("to long int8: Ints/int8/int8.cpp: line 15");
+    valueInt_ = std::stoi(value);
     value_ = static_cast<int8_t>(valueInt_);
 }
 

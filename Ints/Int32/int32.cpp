@@ -9,11 +9,12 @@
 
 Operands::Int32::Int32(const std::string& value)
 {
-    valueInt_ = std::stoi(value);
-    if (valueInt_ < (-2147483648))
+    int64_t tmp = std::stol(value);
+    if (tmp < (-2147483648))
         throw ERROR::MyException("to small int32: Ints/int32/int32.cpp: line 13");
-    if (valueInt_ > 2147483647)
+    if (tmp > 2147483647)
         throw ERROR::MyException("to long int32: Ints/int32/int32.cpp: line 15");
+    valueInt_ = std::stoi(value);
     value_ = static_cast<double>(valueInt_);
 }
 

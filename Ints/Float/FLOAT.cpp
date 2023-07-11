@@ -9,14 +9,15 @@
 
 Operands::FLOAT::FLOAT(const std::string& value)
 {
-    valueInt_ = std::stof(value);
-    if (valueInt_ < (-3.4e38f)) {
+    int64_t tmp = std::stol(value);
+    if (tmp < (-3.4e38f)) {
         throw ERROR::MyException("to small float: Ints/Float/FLOAT.cpp: line 13");
     }
-    if (valueInt_ > 3.4e38f) {
+    if (tmp > 3.4e38f) {
         throw ERROR::MyException("to long float: Ints/Float/FLOAT.cpp: line 15");
     }
     value_ = std::stof(value);
+    valueInt_ = std::stof(value);
     valueStr_ = myDeletUnlessZero(value);
     // std::cout << "valueStr in constructeur -> " << valueStr_ << std::endl;
     // std::cout << "value_ sended --> " << value << std::endl;

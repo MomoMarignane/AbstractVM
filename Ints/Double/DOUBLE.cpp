@@ -9,12 +9,13 @@
 
 Operands::DOUBLE::DOUBLE(const std::string& value)
 {
-    valueInt_ = std::stoi(value);
-    if (valueInt_ < (-1.7e308))
+    int64_t tmp = std::stol(value);
+    if (tmp < (-1.7e308))
         throw ERROR::MyException("to small DOUBLE: line 13: Ints/Double/DOUBLE.cpp");
-    if (valueInt_ > 1.7e308)
+    if (tmp > 1.7e308)
         throw ERROR::MyException("to long DOUBLE: line 15: Ints/Double/DOUBLE.cpp");
     value_ = std::stod(value);
+    valueInt_ = std::stoi(value);
     valueStr_ = myDeletUnlessZero(value);
 }
 
