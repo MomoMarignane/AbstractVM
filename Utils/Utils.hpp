@@ -23,3 +23,4 @@ namespace Operands {
 
 bool check_founded(size_t);
 std::string mySetPrecisionSpecialDecimal(size_t, std::string);
+std::string myDeletUnlessZero(std::string);

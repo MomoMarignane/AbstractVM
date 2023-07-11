@@ -31,6 +31,7 @@ namespace Operands {
 
             std::string toString() const override;
             std::string valueStr_;
+            size_t precision_;
         private:
             float value_;
             float valueInt_;

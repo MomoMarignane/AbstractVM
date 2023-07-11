@@ -12,10 +12,10 @@ Operands::DOUBLE::DOUBLE(const std::string& value)
     valueInt_ = std::stoi(value);
     if (valueInt_ < (-1.7e308))
         throw ERROR::MyException("to small DOUBLE: line 13: Ints/Double/DOUBLE.cpp");
-    if (valueInt_ > 1.7e308) {
+    if (valueInt_ > 1.7e308)
         throw ERROR::MyException("to long DOUBLE: line 15: Ints/Double/DOUBLE.cpp");
-    }
-    value_ = static_cast<double>(valueInt_);
+    value_ = std::stod(value);
+    valueStr_ = myDeletUnlessZero(value);
 }
 
 Operands::DOUBLE::~DOUBLE()
@@ -28,8 +28,7 @@ Operands::eOperandType Operands::DOUBLE::getType() const
 
 std::string Operands::DOUBLE::toString() const
 {
-    std::cout << "DOUBLE VALUE IN TOSTRING -> " << std::to_string(value_)<< std::endl;
-    return std::to_string(value_);
+    return valueStr_;
 }
 
 Operands::IOperand* Operands::DOUBLE::operator+(const IOperand& rhs) const

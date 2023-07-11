@@ -46,11 +46,26 @@ Operands::IOperand* Operands::Factory::createInt32(const std::string& value)
 Operands::IOperand* Operands::Factory::createFloat(const std::string& value)
 {
     // std::cout << "value sended into float class --> " << value << std::endl;
-    std::stringstream ss;
-    ss << std::fixed << std::setprecision(7) << value;
+    // std::stringstream ss;
+    // ss << std::fixed << std::setprecision(7) << value;
     // std::cout << "ss = " << ss.str() << std::endl;
-    Operands::IOperand *newOperand = new Operands::FLOAT(ss.str());
-    return newOperand;
+    // bool precSig = false;
+    // size_t precision;
+    // for (int i = 0; value[i]; i += 1) {
+    //     if (precSig)
+    //         precision += 1;
+    //     if (value[i] == '.')
+    //         precSig = true;
+    // }
+    // // std::cout << "value sended into float class --> " << value << std::endl;
+    // std::stringstream ss;
+    // ss << std::fixed << std::setprecision(precision) << value;
+    // // std::cout << "ss = " << ss.str() << std::endl;
+    // Operands::IOperand *newOperand = new Operands::Int32(ss.str());
+    // return newOperand;
+    // std::cout << "VALUE ICI LA LA = " << value << std::endl;
+    std::string valueStr_ = myDeletUnlessZero(value);
+    return new Operands::FLOAT(valueStr_);
 }
 
 Operands::IOperand* Operands::Factory::createDouble(const std::string& value)

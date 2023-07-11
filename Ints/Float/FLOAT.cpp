@@ -17,7 +17,8 @@ Operands::FLOAT::FLOAT(const std::string& value)
         throw ERROR::MyException("to long float: Ints/Float/FLOAT.cpp: line 15");
     }
     value_ = std::stof(value);
-    valueStr_ = value;
+    valueStr_ = myDeletUnlessZero(value);
+    // std::cout << "valueStr in constructeur -> " << valueStr_ << std::endl;
     // std::cout << "value_ sended --> " << value << std::endl;
     // std::cout << "value_ stocked --> " << value_ << std::endl;
 
@@ -38,19 +39,17 @@ std::string Operands::FLOAT::toString() const
     // ss << std::fixed << std::setprecision(2) << value_;
     // std::cout << "ss = " << ss.str() << std::endl;
     // return ss.str();
-    return std::to_string(value_);
+    // std::cout << "Dans toString FLOAT = " << valueStr_ << std::endl;
+    return (valueStr_);
 }
 
 Operands::IOperand* Operands::FLOAT::operator+(const IOperand& rhs) const
 {
     eOperandType tmpType = std::max(getType(), rhs.getType());
     float rhsValue = std::stof(rhs.toString());
+
     float result = value_ + rhsValue;
-    // Convertir le résultat en chaîne de caractères avec la précision souhaitée
-    std::stringstream ss;
-    ss << std::fixed << std::setprecision(7) << value_;
-    std::string resultString = ss.str();
-    return Operands::Factory::createOperand(tmpType, resultString);
+    return Operands::Factory::createOperand(tmpType, std::to_string(result));
 }
 
 Operands::IOperand* Operands::FLOAT::operator-(const IOperand& rhs) const

@@ -14,7 +14,7 @@ Operands::Int32::Int32(const std::string& value)
         throw ERROR::MyException("to small int32: Ints/int32/int32.cpp: line 13");
     if (valueInt_ > 2147483647)
         throw ERROR::MyException("to long int32: Ints/int32/int32.cpp: line 15");
-    value_ = static_cast<int32_t>(valueInt_);
+    value_ = static_cast<double>(valueInt_);
 }
 
 Operands::Int32::~Int32()
@@ -33,9 +33,9 @@ std::string Operands::Int32::toString() const
 Operands::IOperand* Operands::Int32::operator+(const IOperand& rhs) const
 {
     eOperandType tmpType = std::max(getType(), rhs.getType());
-    int32_t rhsValue = static_cast<int32_t>(std::stoi(rhs.toString()));
+    double rhsValue = static_cast<double>(std::stoi(rhs.toString()));
 
-    int32_t result = value_ + rhsValue;
+    double result = value_ + rhsValue;
     std::string resultString = std::to_string(result);
 
     return Operands::Factory::createOperand(tmpType, resultString);
@@ -44,9 +44,9 @@ Operands::IOperand* Operands::Int32::operator+(const IOperand& rhs) const
 Operands::IOperand* Operands::Int32::operator-(const IOperand& rhs) const
 {
     eOperandType tmpType = std::max(getType(), rhs.getType());
-    int32_t rhsValue = static_cast<int32_t>(std::stoi(rhs.toString()));
+    double rhsValue = static_cast<double>(std::stoi(rhs.toString()));
 
-    int32_t result = value_ - rhsValue;
+    double result = value_ - rhsValue;
     std::string resultString = std::to_string(result);
 
     return Operands::Factory::createOperand(tmpType, resultString);
@@ -55,9 +55,9 @@ Operands::IOperand* Operands::Int32::operator-(const IOperand& rhs) const
 Operands::IOperand* Operands::Int32::operator*(const IOperand& rhs) const
 {
     eOperandType tmpType = std::max(getType(), rhs.getType());
-    int32_t rhsValue = static_cast<int32_t>(std::stoi(rhs.toString()));
+    double rhsValue = static_cast<double>(std::stoi(rhs.toString()));
 
-    int32_t result = value_ * rhsValue;
+    double result = value_ * rhsValue;
     std::string resultString = std::to_string(result);
 
     return Operands::Factory::createOperand(tmpType, resultString);
@@ -66,12 +66,12 @@ Operands::IOperand* Operands::Int32::operator*(const IOperand& rhs) const
 Operands::IOperand* Operands::Int32::operator/(const IOperand& rhs) const
 {
     eOperandType tmpType = std::max(getType(), rhs.getType());
-    int32_t rhsValue = static_cast<int32_t>(std::stoi(rhs.toString()));
+    double rhsValue = static_cast<double>(std::stoi(rhs.toString()));
 
     if (rhsValue == 0)
     throw ERROR::MyException("to small int32: Ints/int32/int32.cpp: line 71");
 
-    int32_t result = value_ / rhsValue;
+    double result = value_ / rhsValue;
     std::string resultString = std::to_string(result);
 
     return Operands::Factory::createOperand(tmpType, resultString);

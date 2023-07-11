@@ -14,7 +14,7 @@ Operands::Int16::Int16(const std::string& value)
         throw ERROR::MyException("to small int16: Ints/int16/int16.cpp: line 13");
     if (valueInt_ > 32767)
         throw ERROR::MyException("to long int16: Ints/int16/int16.cpp: line 15");
-    value_ = static_cast<int16_t>(valueInt_);
+    value_ = static_cast<double>(valueInt_);
 }
 
 Operands::Int16::~Int16()
@@ -33,9 +33,9 @@ std::string Operands::Int16::toString() const
 Operands::IOperand* Operands::Int16::operator+(const IOperand& rhs) const
 {
     eOperandType tmpType = std::max(getType(), rhs.getType());
-    int16_t rhsValue = static_cast<int16_t>(std::stoi(rhs.toString()));
+    double rhsValue = static_cast<double>(std::stoi(rhs.toString()));
 
-    int16_t result = value_ + rhsValue;
+    double result = value_ + rhsValue;
     std::string resultString = std::to_string(result);
 
     return Operands::Factory::createOperand(tmpType, resultString);
@@ -44,9 +44,9 @@ Operands::IOperand* Operands::Int16::operator+(const IOperand& rhs) const
 Operands::IOperand* Operands::Int16::operator-(const IOperand& rhs) const
 {
     eOperandType tmpType = std::max(getType(), rhs.getType());
-    int16_t rhsValue = static_cast<int16_t>(std::stoi(rhs.toString()));
+    double rhsValue = static_cast<double>(std::stoi(rhs.toString()));
 
-    int16_t result = value_ - rhsValue;
+    double result = value_ - rhsValue;
     std::string resultString = std::to_string(result);
 
     return Operands::Factory::createOperand(tmpType, resultString);
@@ -55,9 +55,9 @@ Operands::IOperand* Operands::Int16::operator-(const IOperand& rhs) const
 Operands::IOperand* Operands::Int16::operator*(const IOperand& rhs) const
 {
     eOperandType tmpType = std::max(getType(), rhs.getType());
-    int16_t rhsValue = static_cast<int16_t>(std::stoi(rhs.toString()));
+    double rhsValue = static_cast<double>(std::stoi(rhs.toString()));
 
-    int16_t result = value_ * rhsValue;
+    double result = value_ * rhsValue;
     std::string resultString = std::to_string(result);
 
     return Operands::Factory::createOperand(tmpType, resultString);
@@ -66,13 +66,13 @@ Operands::IOperand* Operands::Int16::operator*(const IOperand& rhs) const
 Operands::IOperand* Operands::Int16::operator/(const IOperand& rhs) const
 {
     eOperandType tmpType = std::max(getType(), rhs.getType());
-    int16_t rhsValue = static_cast<int16_t>(std::stoi(rhs.toString()));
+    double rhsValue = static_cast<double>(std::stoi(rhs.toString()));
 
     if (rhsValue == 0) {
         throw ERROR::MyException("division by 0: Ints/int16/int16.cpp: line 71");
     }
 
-    int16_t result = value_ / rhsValue;
+    double result = value_ / rhsValue;
     std::string resultString = std::to_string(result);
 
     return Operands::Factory::createOperand(tmpType, resultString);

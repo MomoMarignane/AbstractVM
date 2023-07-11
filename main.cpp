@@ -40,7 +40,6 @@ int main(int ac, char **av)
     // Operands::IOperand* result = *op1 + *op2;
     // std::cout << "Addition result: " << result->toString() << std::endl;
     // delete result;
-
     if (ac > 2) {
         std::cout << "Error: nb args not valid: main.cpp: line 40" << std::endl;
         return 84;

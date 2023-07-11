@@ -29,3 +29,26 @@ std::string mySetPrecisionSpecialDecimal(size_t pos, std::string src)
     }
     return tmp;
 }
+
+std::string myDeletUnlessZero(std::string value)
+{
+    std::string valueStr_ = value;
+    bool switch_ = false;
+    int deleteZero = valueStr_.size() - 1;
+    for (int i = 0; valueStr_[i]; i += 1) {
+        if (valueStr_[i] == '.')
+            switch_ = true;
+    }
+    if (switch_ == true) {
+        for (; deleteZero >= 0 && (valueStr_[deleteZero] == '0' || valueStr_[deleteZero] == '.'); deleteZero -= 1)
+            if (valueStr_[deleteZero] == '.') {
+                deleteZero -= 1;
+                break;
+            }
+        std::string tmp;
+        for (int c = 0; c <= deleteZero; c += 1)
+            tmp += valueStr_[c];
+        valueStr_ = tmp;
+    }
+    return valueStr_;
+}
