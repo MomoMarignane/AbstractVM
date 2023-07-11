@@ -66,17 +66,8 @@ void VM::Stack::Assert()
 {
     if (stack_.empty())
         throw ERROR::MyException("stack is empty: Stack/Stack.cpp: line 59");
-    // std::cout << "Stack val 1: " << stack_.front()->toString() << std::endl;
-    // std::cout << "Stack val 2: " <<parser_->getValue() << std::endl;
-
     if (parser_->getValue() != stack_.front()->toString())
         throw ERROR::MyException("stack and value are not twin's: Stack/Stack.cpp: line 61");
-    // const std::string& topValue = stack_.back().first;
-    // const std::string& expectedValue = parser_->getValue();
-    // if (topValue != expectedValue) {
-    //     std::cout << "Error: Assert failed. Expected value: " << expectedValue << ", Actual value: " << topValue << std::endl;
-    //     exit(1);
-    // }
 }
 
 void VM::Stack::Dup()
