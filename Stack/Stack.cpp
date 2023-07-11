@@ -103,7 +103,7 @@ void VM::Stack::Clear()
 {
     if (!stack_.empty())
         stack_.clear();
-    if (!newStack.empty())
+    if (!newStack_.empty())
         newStack_.clear();
 }
 
