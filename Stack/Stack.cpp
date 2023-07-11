@@ -97,7 +97,6 @@ void VM::Stack::Print()
     }
     int asciiValue = std::stoi(stack_.front()->toString());
     std::cout << static_cast<char>(asciiValue) << std::endl;
-    // std::cout << "Output: " << character << std::endl;
 }
 
 void VM::Stack::Clear()

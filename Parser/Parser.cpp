@@ -27,53 +27,53 @@ VM::UserCmd VM::Parser::searchInString()
     if (fullLineCmd_.size() == 0)
         return VM::UserCmd::NO_FOUND;
     size_t pos = fullLineCmd_.find("push");
-    if (check_founded(pos) == true && pos == 0) {
+    if (check_founded(pos) == true) {
         return VM::UserCmd::PUSH;
     }
     pos = fullLineCmd_.find("pop");
-    if (check_founded(pos) == true && pos == 0)
+    if (check_founded(pos) == true)
         return VM::UserCmd::POP;
     pos = fullLineCmd_.find("clear");
-    if (check_founded(pos) == true && pos == 0)
+    if (check_founded(pos) == true)
         return VM::UserCmd::CLEAR;
     pos = fullLineCmd_.find("dup");
-    if (check_founded(pos) == true && pos == 0)
+    if (check_founded(pos) == true)
         return VM::UserCmd::DUP;
     pos = fullLineCmd_.find("swap");
-    if (check_founded(pos) == true && pos == 0)
+    if (check_founded(pos) == true)
         return VM::UserCmd::SWAP;
     pos = fullLineCmd_.find("dump");
-    if (check_founded(pos) == true && pos == 0)
+    if (check_founded(pos) == true)
         return VM::UserCmd::DUMP;
     pos = fullLineCmd_.find("assert");
-    if (check_founded(pos) == true && pos == 0)
+    if (check_founded(pos) == true)
         return VM::UserCmd::ASSERT;
     pos = fullLineCmd_.find("add");
-    if (check_founded(pos) == true && pos == 0)
+    if (check_founded(pos) == true)
         return VM::UserCmd::ADD;
     pos = fullLineCmd_.find("sub");
-    if (check_founded(pos) == true && pos == 0)
+    if (check_founded(pos) == true)
         return VM::UserCmd::SUB;
     pos = fullLineCmd_.find("mul");
-    if (check_founded(pos) == true && pos == 0)
+    if (check_founded(pos) == true)
         return VM::UserCmd::MUL;
     pos = fullLineCmd_.find("div");
-    if (check_founded(pos) == true && pos == 0)
+    if (check_founded(pos) == true)
         return VM::UserCmd::DIV;
     pos = fullLineCmd_.find("mod");
-    if (check_founded(pos) == true && pos == 0)
+    if (check_founded(pos) == true)
         return VM::UserCmd::MOD;
     pos = fullLineCmd_.find("load");
-    if (check_founded(pos) == true && pos == 0)
+    if (check_founded(pos) == true)
         return VM::UserCmd::LOAD;
     pos = fullLineCmd_.find("store");
-    if (check_founded(pos) == true && pos == 0)
+    if (check_founded(pos) == true)
         return VM::UserCmd::STORE;
     pos = fullLineCmd_.find("print");
-    if (check_founded(pos) == true && pos == 0)
+    if (check_founded(pos) == true)
         return VM::UserCmd::PRINT;
     pos = fullLineCmd_.find("exit");
-    if (check_founded(pos) == true && pos == 0)
+    if (check_founded(pos) == true)
         return VM::UserCmd::EXIT;
     return VM::UserCmd::NO_FOUND;
 }
