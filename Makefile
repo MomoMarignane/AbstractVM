@@ -1,10 +1,3 @@
-##
-## EPITECH PROJECT, 2023
-## SYN_abstractVM_$2023
-## File description:
-## Makefile
-##
-
 SRC	=	main.cpp	\
 		Utils/Utils.cpp	\
 		Ints/Int8/int8.cpp	\
